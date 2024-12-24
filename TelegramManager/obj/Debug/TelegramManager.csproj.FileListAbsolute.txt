@@ -1,0 +1,10 @@
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\bin\Debug\TelegramManager.exe.config
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\bin\Debug\TelegramManager.exe
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\bin\Debug\TelegramManager.pdb
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\Debug\TelegramManager.csproj.AssemblyReference.cache
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\Debug\TelegramManager.Properties.Resources.resources
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\Debug\TelegramManager.csproj.GenerateResource.cache
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\Debug\TelegramManager.csproj.CoreCompileInputs.cache
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\Debug\TelegramManager.exe
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\Debug\TelegramManager.pdb
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\Debug\TelegramFolderScanner.MainForm.resources
