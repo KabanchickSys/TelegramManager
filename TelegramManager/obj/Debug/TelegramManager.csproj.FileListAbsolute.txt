@@ -8,3 +8,7 @@ C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\Debug\Telegram
 C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\Debug\TelegramManager.exe
 C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\Debug\TelegramManager.pdb
 C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\Debug\TelegramFolderScanner.MainForm.resources
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\bin\Debug\TelegramManager.exe.manifest
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\bin\Debug\TelegramManager.application
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\Debug\TelegramManager.exe.manifest
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\Debug\TelegramManager.application

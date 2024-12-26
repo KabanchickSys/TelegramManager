@@ -24,7 +24,6 @@ namespace TelegramManager.Main
                         telegramFolders.Add(dir);
                     }
                 }
-                Console.WriteLine("Hi");
             }
             catch (Exception ex)
             {

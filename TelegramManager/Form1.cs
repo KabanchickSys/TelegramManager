@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
@@ -98,6 +99,8 @@ namespace TelegramFolderScanner
                 foreach (var folder in scannedTelegramFolders)
                 {
                     OpenFolder(folder);  // Используем уже существующий метод для запуска Telegram
+                    System.Threading.Thread.Sleep(300);
+
                 }
             }
             else
