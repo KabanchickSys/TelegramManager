@@ -1,15 +1,28 @@
-﻿
-using System;
+﻿using System;
+using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using TelegramManager.Main;
+using System.Diagnostics;
 
 namespace TelegramFolderScanner
 {
     public partial class MainForm : Form
     {
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+        const uint SWP_NOZORDER = 0x0004; // Не изменять порядок окон
+        const uint SWP_SHOWWINDOW = 0x0040; // Отображать окно
+
         private List<string> scannedTelegramFolders = new List<string>(); // Список отсканированных папок
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
 
         public MainForm()
         {
@@ -18,96 +31,117 @@ namespace TelegramFolderScanner
 
         private void btnScan_Click(object sender, EventArgs e)
         {
-            // Очистить все элементы управления в панели
             this.scrollablePanel.Controls.Clear();
-
-            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+            scannedTelegramFolders = TelegramScanFolder.ScanFoldersWithDialog();
+            int yPosition = 10;
+            for (int i = 0; i < scannedTelegramFolders.Count; i++)
             {
-                if (folderDialog.ShowDialog() == DialogResult.OK)
+                string folder = scannedTelegramFolders[i];
+                Button folderButton = new Button
                 {
-                    string rootPath = folderDialog.SelectedPath;
+                    Text = $"{i}: {Path.GetFileName(folder)}",
+                    Tag = new { Id = i, Path = folder },
+                    Size = new System.Drawing.Size(350, 30),
+                    Location = new System.Drawing.Point(10, yPosition)
+                };
+                folderButton.Click += (s, args) =>
+                {
+                    var tag = (dynamic)folderButton.Tag;
+                    OpenFolder(tag.Path, tag.Id);
+                };
+                this.scrollablePanel.Controls.Add(folderButton);
+                yPosition += 40;
+            }
 
-                    // Вызов метода из TelegramScanFolder
-                    scannedTelegramFolders = TelegramScanFolder.GetTelegramFolders(rootPath); // Сохраняем результаты сканирования
-
-                    // Создать кнопки для каждой найденной папки
-                    int yPosition = 10; // Начальная позиция по вертикали
-                    foreach (string folder in scannedTelegramFolders)
-                    {
-                        // Создаём кнопку
-                        Button folderButton = new Button
-                        {
-                            Text = Path.GetFileName(folder), // Имя папки как текст кнопки
-                            Tag = folder, // Сохраняем путь к папке в Tag для использования
-                            Size = new System.Drawing.Size(350, 30),
-                            Location = new System.Drawing.Point(10, yPosition)
-                        };
-
-                        // Добавляем событие нажатия на кнопку
-                        folderButton.Click += (s, args) => OpenFolder(folder);
-
-                        // Добавляем кнопку на панель
-                        this.scrollablePanel.Controls.Add(folderButton);
-
-                        // Увеличиваем позицию для следующей кнопки
-                        yPosition += 40;
-                    }
-
-                    // Если подходящих папок не найдено
-                    if (scannedTelegramFolders.Count == 0)
-                    {
-                        MessageBox.Show("Папки с Telegram.exe не найдены.", "Результаты поиска", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
+            if (scannedTelegramFolders.Count == 0)
+            {
+                MessageBox.Show("Папки с Telegram.exe не найдены.", "Результаты поиска",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
+        // Добавить перенос на другую строку
+        private int nextTelegramX = 0;
 
-        private void OpenFolder(string folderPath)
+        private void OpenFolder(string folderPath, int id)
         {
-            // Открыть Telegram
             string telegramExePath = Path.Combine(folderPath, "Telegram.exe");
 
-            // Проверяем, существует ли файл Telegram.exe
             if (File.Exists(telegramExePath))
             {
+                //int windowWidth = 380;
+                //int windowHeight = 500;
+                //int windowY = 0;
                 try
                 {
-                    // Запускаем Telegram.exe
-                    System.Diagnostics.Process.Start(telegramExePath);
+                    var process = System.Diagnostics.Process.Start(telegramExePath);
+                    //System.Threading.Thread.Sleep(300);
+                    //SetTelegramWindowSize("Telegram", windowWidth, windowHeight, nextTelegramX, windowY, telegramExePath);
+                    //nextTelegramX = windowWidth*id; // Учитываем ширину окна и отступ
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    // Если не удалось запустить, показываем сообщение
-                    MessageBox.Show($"Не удалось запустить Telegram в папке: {folderPath}. Ошибка: {ex.Message}",
-                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                // Если файл Telegram.exe не найден, сообщаем об этом
                 MessageBox.Show($"Не найден файл Telegram.exe в папке: {folderPath}",
                                 "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
+        private void SetTelegramWindowSize(string processName, int width, int height, int posX, int posY, string exePath)
+        {
+            // Получаем все процессы с указанным именем
+            var processes = Process.GetProcessesByName(processName);
+
+            foreach (var process in processes)
+            {
+                try
+                {
+                    // Проверяем, соответствует ли путь исполняемого файла указанному пути
+                    if (process.MainModule?.FileName == exePath)
+                    {
+                        // Устанавливаем размеры и положение окна
+                        IntPtr hWnd = process.MainWindowHandle;
+                        if (hWnd != IntPtr.Zero)
+                        {
+                            MoveWindow(hWnd, posX, posY, width, height, true);
+                        }
+                        break; // Найденный процесс обработан, выходим
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при обработке процесса: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
         private void btnOpenAll_Click(object sender, EventArgs e)
         {
-            // Проверяем, были ли отсканированы папки
             if (scannedTelegramFolders.Count > 0)
             {
-                // Открываем все найденные Telegram
+                int id = 0;
                 foreach (var folder in scannedTelegramFolders)
                 {
-                    OpenFolder(folder);  // Используем уже существующий метод для запуска Telegram
+                    OpenFolder(folder, id); 
                     System.Threading.Thread.Sleep(300);
-
+                    id++;
                 }
             }
             else
             {
-                // Если папки не были отсканированы, выводим сообщение
-                MessageBox.Show("Пожалуйста, выполните сканирование для поиска папок с Telegram.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Пожалуйста, выполните сканирование для поиска папок с Telegram.", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+        private void btnPlaceAll_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 
 namespace TelegramManager.Main
 {
@@ -12,10 +13,7 @@ namespace TelegramManager.Main
 
             try
             {
-                // Получить все директории в корневой папке
                 string[] directories = Directory.GetDirectories(rootPath, "*", SearchOption.TopDirectoryOnly);
-
-                // Найти папки, содержащие файл Telegram.exe
                 foreach (var dir in directories)
                 {
                     string telegramPath = Path.Combine(dir, "Telegram.exe");
@@ -27,11 +25,24 @@ namespace TelegramManager.Main
             }
             catch (Exception ex)
             {
-                // Логируем или пробрасываем исключение
                 throw new Exception($"Ошибка при сканировании папок: {ex.Message}", ex);
             }
 
             return telegramFolders;
+        }
+
+        public static List<string> ScanFoldersWithDialog()
+        {
+            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+            {
+                if (folderDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string rootPath = folderDialog.SelectedPath;
+                    return GetTelegramFolders(rootPath);
+                }
+            }
+
+            return new List<string>();
         }
     }
 }

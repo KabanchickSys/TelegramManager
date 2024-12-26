@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\WestADM\\source\\repos\\TelegramManager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CEF329EB-A51F-4583-8D3B-7977C97D0406}|TelegramManager\\TelegramManager.csproj|C:\\Users\\WestADM\\source\\repos\\TelegramManager\\telegrammanager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CEF329EB-A51F-4583-8D3B-7977C97D0406}|TelegramManager\\TelegramManager.csproj|c:\\users\\westadm\\source\\repos\\telegrammanager\\telegrammanager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CEF329EB-A51F-4583-8D3B-7977C97D0406}|TelegramManager\\TelegramManager.csproj|solutionrelative:telegrammanager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CEF329EB-A51F-4583-8D3B-7977C97D0406}|TelegramManager\\TelegramManager.csproj|c:\\users\\westadm\\source\\repos\\telegrammanager\\telegrammanager\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CEF329EB-A51F-4583-8D3B-7977C97D0406}|TelegramManager\\TelegramManager.csproj|solutionrelative:telegrammanager\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CEF329EB-A51F-4583-8D3B-7977C97D0406}|TelegramManager\\TelegramManager.csproj|C:\\Users\\WestADM\\source\\repos\\TelegramManager\\telegrammanager\\main\\telegramscanfolder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CEF329EB-A51F-4583-8D3B-7977C97D0406}|TelegramManager\\TelegramManager.csproj|solutionrelative:telegrammanager\\main\\telegramscanfolder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEF329EB-A51F-4583-8D3B-7977C97D0406}|TelegramManager\\TelegramManager.csproj|C:\\Users\\WestADM\\source\\repos\\TelegramManager\\telegrammanager\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEF329EB-A51F-4583-8D3B-7977C97D0406}|TelegramManager\\TelegramManager.csproj|solutionrelative:telegrammanager\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CEF329EB-A51F-4583-8D3B-7977C97D0406}|TelegramManager\\TelegramManager.csproj|C:\\Users\\WestADM\\source\\repos\\TelegramManager\\telegrammanager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -36,34 +36,33 @@
               "RelativeDocumentMoniker": "TelegramManager\\Form1.cs",
               "ToolTip": "C:\\Users\\WestADM\\source\\repos\\TelegramManager\\TelegramManager\\Form1.cs",
               "RelativeToolTip": "TelegramManager\\Form1.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAgwGMAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAADoAAAAAAAAAAAAuwEkAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-24T10:44:55.416Z",
-              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "TelegramScanFolder.cs",
               "DocumentMoniker": "C:\\Users\\WestADM\\source\\repos\\TelegramManager\\TelegramManager\\Main\\TelegramScanFolder.cs",
               "RelativeDocumentMoniker": "TelegramManager\\Main\\TelegramScanFolder.cs",
               "ToolTip": "C:\\Users\\WestADM\\source\\repos\\TelegramManager\\TelegramManager\\Main\\TelegramScanFolder.cs",
               "RelativeToolTip": "TelegramManager\\Main\\TelegramScanFolder.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAANzMzMzMJwCwAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-24T11:49:13.861Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "C:\\Users\\WestADM\\source\\repos\\TelegramManager\\TelegramManager\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "TelegramManager\\Form1.Designer.cs",
               "ToolTip": "C:\\Users\\WestADM\\source\\repos\\TelegramManager\\TelegramManager\\Form1.Designer.cs",
               "RelativeToolTip": "TelegramManager\\Form1.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAMDMzMzPbvzkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAl5mZmZkewC4AAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-24T10:46:02.916Z",
               "EditorCaption": ""
@@ -77,8 +76,7 @@
               "ToolTip": "C:\\Users\\WestADM\\source\\repos\\TelegramManager\\TelegramManager\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "RelativeToolTip": "TelegramManager\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-24T10:43:15.709Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+              "WhenOpened": "2024-12-24T10:43:15.709Z"
             }
           ]
         }

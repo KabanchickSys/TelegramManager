@@ -1,0 +1,14 @@
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\bin\x64\Debug\TelegramManager.exe.config
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\bin\x64\Debug\TelegramManager.exe.manifest
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\bin\x64\Debug\TelegramManager.application
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\bin\x64\Debug\TelegramManager.exe
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\bin\x64\Debug\TelegramManager.pdb
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\x64\Debug\TelegramManager.csproj.AssemblyReference.cache
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\x64\Debug\TelegramFolderScanner.MainForm.resources
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\x64\Debug\TelegramManager.Properties.Resources.resources
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\x64\Debug\TelegramManager.csproj.GenerateResource.cache
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\x64\Debug\TelegramManager.csproj.CoreCompileInputs.cache
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\x64\Debug\TelegramManager.exe.manifest
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\x64\Debug\TelegramManager.application
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\x64\Debug\TelegramManager.exe
+C:\Users\WestADM\source\repos\TelegramManager\TelegramManager\obj\x64\Debug\TelegramManager.pdb
