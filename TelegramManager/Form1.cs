@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using TelegramManager.Main;
 using System.Diagnostics;
+using System.Linq;
 
 namespace TelegramFolderScanner
 {
@@ -47,7 +48,7 @@ namespace TelegramFolderScanner
                 folderButton.Click += (s, args) =>
                 {
                     var tag = (dynamic)folderButton.Tag;
-                    OpenFolder(tag.Path, tag.Id);
+                    OpenFolder(tag.Path);
                 };
                 this.scrollablePanel.Controls.Add(folderButton);
                 yPosition += 40;
@@ -60,27 +61,20 @@ namespace TelegramFolderScanner
             }
         }
 
-        // Добавить перенос на другую строку
-        private int nextTelegramX = 0;
-
-        private void OpenFolder(string folderPath, int id)
+        private void OpenFolder(string folderPath)
         {
             string telegramExePath = Path.Combine(folderPath, "Telegram.exe");
 
             if (File.Exists(telegramExePath))
             {
-                //int windowWidth = 380;
-                //int windowHeight = 500;
-                //int windowY = 0;
                 try
                 {
                     var process = System.Diagnostics.Process.Start(telegramExePath);
-                    //System.Threading.Thread.Sleep(300);
-                    //SetTelegramWindowSize("Telegram", windowWidth, windowHeight, nextTelegramX, windowY, telegramExePath);
-                    //nextTelegramX = windowWidth*id; // Учитываем ширину окна и отступ
                 }
                 catch (Exception)
                 {
+                    MessageBox.Show("Невозможно открыть Telegram",
+                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -94,23 +88,19 @@ namespace TelegramFolderScanner
 
         private void SetTelegramWindowSize(string processName, int width, int height, int posX, int posY, string exePath)
         {
-            // Получаем все процессы с указанным именем
             var processes = Process.GetProcessesByName(processName);
-
             foreach (var process in processes)
             {
                 try
                 {
-                    // Проверяем, соответствует ли путь исполняемого файла указанному пути
                     if (process.MainModule?.FileName == exePath)
                     {
-                        // Устанавливаем размеры и положение окна
                         IntPtr hWnd = process.MainWindowHandle;
                         if (hWnd != IntPtr.Zero)
                         {
                             MoveWindow(hWnd, posX, posY, width, height, true);
                         }
-                        break; // Найденный процесс обработан, выходим
+                        break;
                     }
                 }
                 catch (Exception ex)
@@ -128,8 +118,8 @@ namespace TelegramFolderScanner
                 int id = 0;
                 foreach (var folder in scannedTelegramFolders)
                 {
-                    OpenFolder(folder, id); 
-                    System.Threading.Thread.Sleep(300);
+                    OpenFolder(folder); 
+                    System.Threading.Thread.Sleep(200);
                     id++;
                 }
             }
@@ -141,7 +131,50 @@ namespace TelegramFolderScanner
         }
         private void btnPlaceAll_Click(object sender, EventArgs e)
         {
+            if (scannedTelegramFolders.Count > 0)
+            {
+                int windowWidth = 380;  
+                int windowHeight = 500;
+                int xOffset = 0;       
+                int yOffset = 0; 
+                const string processName = "Telegram";
+                int screenWidth = Screen.PrimaryScreen.Bounds.Width;
 
+                try
+                {
+                    foreach (var folder in scannedTelegramFolders)
+                    {
+                        try
+                        {
+                            if(xOffset + windowWidth > screenWidth)
+                            {
+                                xOffset = 0;
+                                yOffset += windowHeight + 2;
+                            }
+                            if (yOffset > windowHeight + 2)
+                            {
+                                xOffset = 0;
+                                yOffset = 0;
+                            }
+                            SetTelegramWindowSize(processName, windowWidth, windowHeight, xOffset, yOffset, Path.Combine(folder, "Telegram.exe"));
+                            xOffset += windowWidth+2; 
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Ошибка при размещении окна для папки {folder}: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выполните сканирование для поиска папок с Telegram.", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

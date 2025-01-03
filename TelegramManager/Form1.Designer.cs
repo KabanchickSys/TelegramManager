@@ -58,7 +58,7 @@
             this.btnPlaceAll.TabIndex = 2;
             this.btnPlaceAll.Text = "Разместить все";
             this.btnPlaceAll.UseVisualStyleBackColor = true;
-            this.btnPlaceAll.Click += new System.EventHandler(this.btnOpenAll_Click);  // Обработчик нажатия
+            this.btnPlaceAll.Click += new System.EventHandler(this.btnPlaceAll_Click);  // Обработчик нажатия
 
             // 
             // scrollablePanel
